@@ -1,4 +1,4 @@
-package br.com.editthemovie.Util;
+package br.com.editthemovie.util;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

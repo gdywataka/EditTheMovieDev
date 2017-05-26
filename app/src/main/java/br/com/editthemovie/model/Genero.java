@@ -1,4 +1,4 @@
-package br.com.editthemovie.Model;
+package br.com.editthemovie.model;
 import java.util.List;
 
 

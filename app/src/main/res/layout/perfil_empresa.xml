@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_launcher_round"
+        android:layout_weight="0.09" />
+
+    <EditText
+        android:id="@+id/editNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nome Curto" />
+
+    <EditText
+        android:id="@+id/editRazao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Razão Social" />
+
+    <EditText
+        android:id="@+id/editTelefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Telefone" />
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Email" />
+
+    <EditText
+        android:id="@+id/editCnpj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="CNPJ" />
+
+    <EditText
+        android:id="@+id/editSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/editCidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.09"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Cidade" />
+
+    <Button
+        android:id="@+id/btnModificar"
+        android:layout_width="244dp"
+        android:layout_height="wrap_content"
+        android:text="Modificar" />
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="243dp"
+        android:layout_height="wrap_content"
+        android:text="Voltar" />
+</LinearLayout>

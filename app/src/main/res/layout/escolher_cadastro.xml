@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btnEmpresa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Empresa" />
+
+    <Button
+        android:id="@+id/btnUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Usuario" />
+
+    <Button
+        android:id="@+id/btnFree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Freelancer" />
+</LinearLayout>

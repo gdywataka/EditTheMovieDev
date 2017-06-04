@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="104dp">
+
+        <ImageView
+            android:id="@+id/imageFree"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nome Curto" />
+
+    <EditText
+        android:id="@+id/editSocial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Razao Social" />
+
+    <EditText
+        android:id="@+id/editTelefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Telefone" />
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Email" />
+
+    <EditText
+        android:id="@+id/editCnpj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="CNPJ" />
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Voltar" />
+
+    <Button
+        android:id="@+id/btnCadastrar"
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar" />
+</LinearLayout>

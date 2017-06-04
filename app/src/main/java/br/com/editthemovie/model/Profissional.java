@@ -1,108 +1,64 @@
 package br.com.editthemovie.model;
 
-import java.util.Date;
+/**
+ * Created by Diogo on 03/06/2017.
+ */
 
-public class Profissional 
-{
-    
+public class Profissional {
+
     private int       id;
-    private String    nome;
-    private String    email;
-    private long      cpf;
-    private Date 	  nascimento;
-    private String	  telefone;
-    private String	  login;
-    private String	  senha;
-    private Endereco  endereco;
+    private String      cpf;
+    private String    nivel;
+    private String 	  descricao;
+    private int      avaliacao;
+    private Usuario   usuario;
 
 
     public int getId()
     {
         return id;
     }
-
-    public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public void setId(int pId)
+    public void setId(int pId)
     {
         id = pId;
     }
 
-    public String getNome()
-    {
-        return nome;
-    }
-
-    public void setNome(String pNome)
-    {
-        nome = pNome;
-    }
-
-    public String getEmail()
-    {
-        return email;
-    }
-
-    public void setEmail(String pEmail)
-    {
-        email = pEmail;
-    }
-
-    public long getCpf()
-    {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(long pCpf)
-    {
-        cpf = pCpf;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public Date getNascimento()
-    {
-        return nascimento;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setNascimento(Date pNascimento)
-    {
-        nascimento = pNascimento;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public String getTelefone()
-    {
-        return telefone;
+
+    public String getNivel() {
+        return nivel;
+    }
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
     }
 
-    public void setTelefone(String pTelefone)
-    {
-        telefone = pTelefone;
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public String getLogin()
-    {
-        return login;
+    public int getAvaliacao() {
+        return avaliacao;
+    }
+    public void setAvaliacao(int avaliacao) {
+        this.avaliacao = avaliacao;
     }
 
-    public void setLogin(String pLogin)
-    {
-        login = pLogin;
-    }
-
-    public String getSenha()
-    {
-        return senha;
-    }
-
-    public void setSenha(String pSenha)
-    {
-        senha = pSenha;
-    }
-    
-    
 }

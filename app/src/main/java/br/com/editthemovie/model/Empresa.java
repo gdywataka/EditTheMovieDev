@@ -1,18 +1,18 @@
 package br.com.editthemovie.model;
 
+/**
+ * Created by Diogo on 03/06/2017.
+ */
 
-public class Empresa
-{
-    private boolean flag;
+public class Empresa {
+
     private int       id;
     private String    nome_curto;
     private String    razao_social;
-    private String    email;
-    private long      cnpj;
-    private String    telefone;
-    private String    login;
-    private String    senha;
-    private Endereco  endereco;
+    private String    cnpj;
+    private Usuario   usuario;
+    private String    descricao;
+
 
 
     public int getId()
@@ -31,11 +31,11 @@ public class Empresa
         return nome_curto;
     }
 
+
     public void setNome_Curto(String pNome_Curto)
     {
-        nome_curto = pNome_Curto;
+        this.nome_curto = pNome_Curto;
     }
-
 
     public String getRazao_Social()
     {
@@ -44,73 +44,33 @@ public class Empresa
 
     public void setRazao_Social(String pRazao_Social)
     {
-        razao_social = pRazao_Social;
+        this.razao_social = pRazao_Social;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
 
-    public String getEmail()
-    {
-        return email;
-    }
-
-    public void setEmail(String pEmail)
-    {
-        email = pEmail;
-    }
-
-
-    public String getTelefone()
-    {
-        return telefone;
-    }
-
-    public void setTelefone(String pTelefone)
-    {
-        telefone = pTelefone;
-    }
-
-
-    public long getCnpj()
+    public String getCnpj()
     {
         return cnpj;
     }
 
-    public void setCnpj(long pCnpj)
+    public void setCnpj(String pCnpj)
     {
         cnpj = pCnpj;
     }
 
-    public String getLogin()
-    {
-        return login;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setLogin(String pLogin)
-    {
-        login = pLogin;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
-
-
-    public String getSenha()
-    {
-        return senha;
-    }
-
-    public void setSenha(String pSenha)
-    {
-        senha = pSenha;
-    }
-
-	public Endereco getEndereco() {
-        return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-
-
-	
 }
-

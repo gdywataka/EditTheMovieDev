@@ -1,21 +1,18 @@
 package br.com.editthemovie.model;
 
+/**
+ * Created by Diogo on 03/06/2017.
+ */
+
 public class Usuario {
 
-    private int id;
-    private String login;
-    private String senha;
-    private String nome;
-    private String email;
-    private String telefone;
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
+    private int       id;
+    private String    nome;
+    private String    email;
+    private String 	  nascimento;
+    private String	  telefone;
+    private String	  senha;
+    private Endereco  endereco;
 
     public int getId() {
         return id;
@@ -25,35 +22,69 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getSenha() {
-        return senha;
+
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
-    public String getNome() {
+    public String getNome()
+    {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String pNome)
+    {
+        nome = pNome;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String pEmail)
+    {
+        email = pEmail;
     }
 
-    public String getTelefone() {
+
+    public String getNascimento()
+    {
+        return nascimento;
+    }
+
+    public void setNascimento(String pNascimento)
+    {
+        nascimento = pNascimento;
+    }
+
+
+    public String getTelefone()
+    {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setTelefone(String pTelefone)
+    {
+        telefone = pTelefone;
     }
+
+
+
+    public String getSenha()
+    {
+        return senha;
+    }
+
+    public void setSenha(String pSenha)
+    {
+        senha = pSenha;
+    }
+
+
+
 }

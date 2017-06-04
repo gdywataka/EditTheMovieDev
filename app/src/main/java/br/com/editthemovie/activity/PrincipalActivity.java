@@ -2,6 +2,8 @@ package br.com.editthemovie.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabItem;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -9,8 +11,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import java.util.ArrayList;
 
 import br.com.editthemovie.R;
+import br.com.editthemovie.model.Profissional;
+import br.com.editthemovie.util.EmpresaAdapter;
+import br.com.editthemovie.util.ProfissionalAdapter;
 
 public class PrincipalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +33,31 @@ public class PrincipalActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
+        //Adicionar webservice ArrayList<Profissional> profissionais =
+         ProfissionalAdapter profissionalAdapter = new ProfissionalAdapter(this,R.layout.layout_profissionial,profissionais);
+         EmpresaAdapter empresaAdapter = new EmpresaAdapter(this,R.layout.layout_empresa,empresas);
+
+        // TabItems da main
+        TabItem  tabProfissional =(TabItem) findViewById(R.id.tab_profissionais);
+        TabItem  tabEmpresas  = (TabItem) findViewById(R.id.tab_empresas);
+
+        tabProfissional.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+               //ArrayList<Profissional> profissionais =
+                profissionalAdapter = new ProfissionalAdapter(this,R.layout.layout_profissionial,profissionais);
+
+            }
+        });
+
+        tabEmpresas.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                //ArrayList<Empresa> empresas =
+
+
+            }
+        });
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -33,6 +66,7 @@ public class PrincipalActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
 
     }
 
@@ -45,6 +79,7 @@ public class PrincipalActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,4 +119,6 @@ public class PrincipalActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

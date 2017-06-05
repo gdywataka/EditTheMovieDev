@@ -6,9 +6,6 @@ package br.com.editthemovie.model;
 
 public class Endereco {
 
-
-
-
         private int id;
         private String estado;
         private String cidade;

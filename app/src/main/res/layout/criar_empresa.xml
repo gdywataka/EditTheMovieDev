@@ -19,7 +19,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/editNome"
+        android:id="@+id/editNomeEmpresa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -27,7 +27,7 @@
         android:text="Nome Curto" />
 
     <EditText
-        android:id="@+id/editSocial"
+        android:id="@+id/editSocialEmpresa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -35,7 +35,7 @@
         android:text="Razao Social" />
 
     <EditText
-        android:id="@+id/editTelefone"
+        android:id="@+id/editTelefoneEmpresa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -43,7 +43,7 @@
         android:text="Telefone" />
 
     <EditText
-        android:id="@+id/editEmail"
+        android:id="@+id/editEmailEmpresa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -51,7 +51,15 @@
         android:text="Email" />
 
     <EditText
-        android:id="@+id/editCnpj"
+        android:id="@+id/editTextCidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Cidade" />
+
+    <EditText
+        android:id="@+id/editCnpjEmpresa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -65,7 +73,7 @@
         android:text="Voltar" />
 
     <Button
-        android:id="@+id/btnCadastrar"
+        android:id="@+id/btnCadastrarEmpresa"
         android:layout_width="171dp"
         android:layout_height="wrap_content"
         android:text="Cadastrar" />

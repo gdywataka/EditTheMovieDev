@@ -13,6 +13,7 @@ public class Usuario {
     private String	  telefone;
     private String	  senha;
     private Endereco  endereco;
+    private Character permissao;
 
     public int getId() {
         return id;
@@ -86,5 +87,11 @@ public class Usuario {
     }
 
 
+    public Character getPermissao() {
+        return permissao;
+    }
 
+    public void setPermissao(Character permissao) {
+        this.permissao = permissao;
+    }
 }

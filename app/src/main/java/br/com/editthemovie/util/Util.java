@@ -2,6 +2,7 @@ package br.com.editthemovie.util;
 
 import android.content.BroadcastReceiver;
 
+import com.fasterxml.jackson.databind.AnnotationIntrospector;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonValueInstantiator;
@@ -16,6 +17,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.List;
 
@@ -25,6 +27,8 @@ import br.com.editthemovie.model.Genero;
 import br.com.editthemovie.model.Profissional;
 import br.com.editthemovie.model.Usuario;
 import br.com.editthemovie.model.Video;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 /**
  * Created by Diogo on 24/04/2017.
@@ -56,181 +60,98 @@ public class Util {
     }
 
     //Profissional
-    public static Profissional JSONTProfissional(String jsonFile){
+    public static Profissional JSONTProfissional(String jsonFile) {
 
         JSONObject mainObj;
         Profissional profissional = null;
+        Gson gson = new Gson();
 
         try {
+
             mainObj = new JSONObject(jsonFile);
-            JSONObject profissionalObject=  mainObj.getJSONObject("profissional");
-
-
-            profissional.setId(profissionalObject.getInt("id"));
-            profissional.setCpf(profissionalObject.getString("cpf"));
-            profissional.setNivel(profissionalObject.getString("nivel"));
-            profissional.setDescricao(profissionalObject.getString("descricao"));
-            profissional.setAvaliacao(profissionalObject.getInt("avaliacao"));
-
-            profissional.getUsuario().setId(profissionalObject.getJSONObject("usuario").getInt("id"));
-            profissional.getUsuario().setNome(profissionalObject.getJSONObject("usuario").getString("nome"));
-            profissional.getUsuario().setEmail(profissionalObject.getJSONObject("usuario").getString("email"));
-            profissional.getUsuario().setNascimento(profissionalObject.getJSONObject("usuario").getString("nascimento"));
-            profissional.getUsuario().setTelefone(profissionalObject.getJSONObject("usuario").getString("telefone"));
-            profissional.getUsuario().setNascimento(profissionalObject.getJSONObject("usuario").getString("senha"));
-
-            profissional.getUsuario().getEndereco().setId(profissionalObject.getJSONObject("usuario").getJSONObject("endereco").getInt("id"));
-            profissional.getUsuario().getEndereco().setEstado(profissionalObject.getJSONObject("usuario").getJSONObject("endereco").getString("estado"));
-            profissional.getUsuario().getEndereco().setCidade(profissionalObject.getJSONObject("usuario").getJSONObject("endereco").getString("cidade"));
-            profissional.getUsuario().getEndereco().setBairro(profissionalObject.getJSONObject("usuario").getJSONObject("endereco").getString("bairro"));
-            profissional.getUsuario().getEndereco().setRua(profissionalObject.getJSONObject("usuario").getJSONObject("endereco").getString("rua"));
-            profissional.getUsuario().getEndereco().setNumero(profissionalObject.getJSONObject("usuario").getJSONObject("endereco").getInt("numero"));
+            JSONObject profissionalObject = mainObj.getJSONObject("profissional");
+            profissional = gson.fromJson(profissionalObject.toString(), profissional.getClass());
 
 
         } catch (JSONException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             return profissional;
         }
     }
 
-    public static List<Profissional> JSONProfissionalLista(String jsonFile)
-    {
+    public static List<Profissional> JSONProfissionalLista(String jsonFile) {
         JSONObject mainObject;
-        Profissional profissional= null;
+        Profissional profissional = null;
         List<Profissional> profissionais = null;
-        try
-        {
-            mainObject= new JSONObject(jsonFile);
+        Gson gson = new Gson();
+
+        try {
+            mainObject = new JSONObject(jsonFile);
             JSONArray listObj = mainObject.getJSONArray("lista");
 
-            for(int i = 0 ; i <= listObj.length();i++)
-            {
-                JSONObject profissionalObject=(JSONObject) listObj.get(i);
-
-                profissional.setId(profissionalObject.getInt("id"));
-                profissional.setCpf(profissionalObject.getString("cpf"));
-                profissional.setNivel(profissionalObject.getString("nivel"));
-                profissional.setDescricao(profissionalObject.getString("descricao"));
-                profissional.setAvaliacao(profissionalObject.getInt("avaliacao"));
-
-                profissional.getUsuario().setId(profissionalObject.getJSONObject("usuario").getInt("id"));
-                profissional.getUsuario().setNome(profissionalObject.getJSONObject("usuario").getString("nome"));
-                profissional.getUsuario().setEmail(profissionalObject.getJSONObject("usuario").getString("email"));
-                profissional.getUsuario().setNascimento(profissionalObject.getJSONObject("usuario").getString("nascimento"));
-                profissional.getUsuario().setTelefone(profissionalObject.getJSONObject("usuario").getString("telefone"));
-                profissional.getUsuario().setNascimento(profissionalObject.getJSONObject("usuario").getString("senha"));
-
-                profissional.getUsuario().getEndereco().setId(profissionalObject.getJSONObject("usuario").getJSONObject("endereco").getInt("id"));
-                profissional.getUsuario().getEndereco().setEstado(profissionalObject.getJSONObject("usuario").getJSONObject("endereco").getString("estado"));
-                profissional.getUsuario().getEndereco().setCidade(profissionalObject.getJSONObject("usuario").getJSONObject("endereco").getString("cidade"));
-                profissional.getUsuario().getEndereco().setBairro(profissionalObject.getJSONObject("usuario").getJSONObject("endereco").getString("bairro"));
-                profissional.getUsuario().getEndereco().setRua(profissionalObject.getJSONObject("usuario").getJSONObject("endereco").getString("rua"));
-                profissional.getUsuario().getEndereco().setNumero(profissionalObject.getJSONObject("usuario").getJSONObject("endereco").getInt("numero"));
-
-
+            for (int i = 0; i <= listObj.length(); i++) {
+                JSONObject profissionalObject = (JSONObject) listObj.get(i);
+                profissional = gson.fromJson(profissionalObject.toString(), profissional.getClass());
                 profissionais.add(profissional);
             }
-        }
-        catch (JSONException e)
-        {
+        } catch (JSONException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             return profissionais;
         }
     }
 
     //Usuario
-    public static Usuario JSONUsuario(String jsonFile)
-    {
-        JSONObject mainObj ;
-        Usuario usuario=null;
-        try
-        {
+    public static Usuario JSONUsuario(String jsonFile) {
+        JSONObject mainObj;
+        Usuario usuario = null;
+        Gson gson = new Gson();
+        try {
             mainObj = new JSONObject(jsonFile);
-            JSONObject usuarioObj= mainObj.getJSONObject("usuario");
-            usuario.setId(usuarioObj.getInt("id"));
-            usuario.setNome(usuarioObj.getString("nome"));
-            usuario.setEmail(usuarioObj.getString("email"));
-            usuario.setNascimento(usuarioObj.getString("nascimento"));
-            usuario.setTelefone(usuarioObj.getString("telefone"));
-            usuario.setSenha(usuarioObj.getString("senha"));
-
-            usuario.getEndereco().setId(usuarioObj.getInt("id"));
-            usuario.getEndereco().setEstado(usuarioObj.getString("estado"));
-            usuario.getEndereco().setCidade(usuarioObj.getString("cidade"));
-            usuario.getEndereco().setBairro(usuarioObj.getString("bairro"));
-            usuario.getEndereco().setRua(usuarioObj.getString("rua"));
-            usuario.getEndereco().setNumero(usuarioObj.getInt("numero"));
-
-        }
-        catch (JSONException e) {
+            JSONObject usuarioObj = mainObj.getJSONObject("usuario");
+            usuario = gson.fromJson(usuarioObj.toString(), usuario.getClass());
+        } catch (JSONException e) {
             e.printStackTrace();
-        }
-        finally
-        {
+        } finally {
             return usuario;
         }
     }
 
-    public static List<Usuario>JSONListaUsuario(String jsonFile)
-    {
-     JSONObject mainObj = null;
-     Usuario usuario = null;
-        List<Usuario>usuarios= null;
+    public static List<Usuario> JSONListaUsuario(String jsonFile) {
+        JSONObject mainObj = null;
+        Usuario usuario = null;
+        List<Usuario> usuarios = null;
+        Gson gson = new Gson();
 
-        try
-        {
+        try {
             mainObj = new JSONObject(jsonFile);
             JSONArray listObj = mainObj.getJSONArray("lista");
 
-            for(int i = 0 ; i <= listObj.length();i++ )
-            {
+            for (int i = 0; i <= listObj.length(); i++) {
                 JSONObject usuarioObj = (JSONObject) listObj.get(i);
-
-                usuario.setId(usuarioObj.getInt("id"));
-                usuario.setNome(usuarioObj.getString("nome"));
-                usuario.setEmail(usuarioObj.getString("email"));
-                usuario.setNascimento(usuarioObj.getString("nascimento"));
-                usuario.setTelefone(usuarioObj.getString("telefone"));
-                usuario.setSenha(usuarioObj.getString("senha"));
-
-                usuario.getEndereco().setId(usuarioObj.getInt("id"));
-                usuario.getEndereco().setEstado(usuarioObj.getString("estado"));
-                usuario.getEndereco().setCidade(usuarioObj.getString("cidade"));
-                usuario.getEndereco().setBairro(usuarioObj.getString("bairro"));
-                usuario.getEndereco().setRua(usuarioObj.getString("rua"));
-                usuario.getEndereco().setNumero(usuarioObj.getInt("numero"));
-
+                usuario = gson.fromJson(usuarioObj.toString(), usuario.getClass());
                 usuarios.add(usuario);
             }
 
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
 
+        } finally {
+            return usuarios;
+        }
     }
-        finally {
-        return usuarios;
-        }
-        }
 
     //Endereco
     public static Endereco JSONEndereco(String jsonFile) {
         JSONObject mainObj = null;
         Endereco endereco = null;
+        Gson gson = new Gson();
 
         try {
             mainObj = new JSONObject(jsonFile);
             JSONObject enderecoObjeto = mainObj.getJSONObject("endereco");
-            endereco.setId(enderecoObjeto.getInt("id"));
-            endereco.setEstado(enderecoObjeto.getString("estado"));
-            endereco.setCidade(enderecoObjeto.getString("cidade"));
-            endereco.setBairro(enderecoObjeto.getString("bairro"));
-            endereco.setRua(enderecoObjeto.getString("rua"));
-            endereco.setNumero(enderecoObjeto.getInt("numero"));
+            endereco = gson.fromJson(enderecoObjeto.toString(), endereco.getClass());
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -241,119 +162,153 @@ public class Util {
 
     }
 
-    public static List<Endereco> JSONEnderecoLista(String jsonFile)
-    {
+    public static List<Endereco> JSONEnderecoLista(String jsonFile) {
         JSONObject mainObj = null;
-        Endereco endereco= null;
-        List<Endereco>enderecos = null;
-        try
-        {
-        mainObj= new JSONObject(jsonFile);
+        Endereco endereco = null;
+        List<Endereco> enderecos = null;
+        Gson gson = new Gson();
+        try {
+            mainObj = new JSONObject(jsonFile);
             JSONArray listaEndereco = mainObj.getJSONArray("lista");
 
-            for (int i = 0; i <= listaEndereco.length();i++)
-            {
+            for (int i = 0; i <= listaEndereco.length(); i++) {
                 JSONObject enderecoObjeto = (JSONObject) listaEndereco.get(i);
-
-                endereco.setId(enderecoObjeto.getInt("id"));
-                endereco.setEstado(enderecoObjeto.getString("estado"));
-                endereco.setCidade(enderecoObjeto.getString("cidade"));
-                endereco.setBairro(enderecoObjeto.getString("bairro"));
-                endereco.setRua(enderecoObjeto.getString("rua"));
-                endereco.setNumero(enderecoObjeto.getInt("numero"));
-
+                endereco = gson.fromJson(enderecoObjeto.toString(), endereco.getClass());
                 enderecos.add(endereco);
             }
 
-        }
-        catch (JSONException e)
-        {
+        } catch (JSONException e) {
             e.printStackTrace();
-        }
-
-        finally {
+        } finally {
             return enderecos;
         }
     }
 
     //Genero
-    public static Genero JSONGenero(String jsonFile)
-    {
+    public static Genero JSONGenero(String jsonFile) {
         JSONObject mainObj = null;
         Genero genero = null;
+        Gson gson = new Gson();
 
-        try
-        {
+        try {
             JSONObject generoObjeto = mainObj.getJSONObject("genero");
-            genero.setId(generoObjeto.getInt("id"));
-            genero.setNome(generoObjeto.getString("nome"));
-        }
-        catch (JSONException e)
-        {
+            genero = gson.fromJson(generoObjeto.toString(), genero.getClass());
+        } catch (JSONException e) {
             e.printStackTrace();
-        }
-
-        finally {
+        } finally {
             return genero;
         }
     }
 
-    public static List<Genero> JSONGeneroLista(String jsonFile)
-    {
+    public static List<Genero> JSONGeneroLista(String jsonFile) {
         JSONObject mainObj = null;
         Genero genero = null;
-        List<Genero>generos = null;
+        List<Genero> generos = null;
+        Gson gson = new Gson();
 
+        try {
+            mainObj = new JSONObject(jsonFile);
+            JSONArray listaGenero = mainObj.getJSONArray("lista");
+            for (int i = 0; i <= listaGenero.length(); i++) {
+                JSONObject generoObjeto = (JSONObject) listaGenero.get(i);
+                genero = gson.fromJson(generoObjeto.toString(), genero.getClass());
+                generos.add(genero);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } finally {
+            return generos;
+        }
+    }
+
+
+    //Video
+    public static Video JSONVideo(String jsonFile) {
+
+        JSONObject mainObj = null;
+        Video video = null;
+        Gson gson = new Gson();
+        try {
+            JSONObject videoObj = mainObj.getJSONObject("video");
+            video = gson.fromJson(videoObj.toString(), video.getClass());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } finally {
+            return video;
+        }
+    }
+
+    public static List<Video> JSONVideoLista(String jsonFile) {
+
+        JSONObject mainObj;
+        List<Video> videos = null;
+        Video video = null;
+        Gson gson = new Gson();
+        try {
+            mainObj = new JSONObject(jsonFile);
+            JSONArray listaVideoObjeto = mainObj.getJSONArray("lista");
+            for (int i = 0; i <= listaVideoObjeto.length(); i++) {
+                JSONObject videoObjeto = (JSONObject) listaVideoObjeto.get(i);
+                video = gson.fromJson(videoObjeto.toString(), video.getClass());
+                videos.add(video);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        finally {
+            return  videos;
+        }
+    }
+
+    //Empresa
+
+    public static Empresa JSONEmpresa(String jsonFile)
+    {
+        JSONObject mainObj;
+        Empresa empresa = null;
+        Gson gson = new Gson();
         try
         {
             mainObj = new JSONObject(jsonFile);
-            JSONArray listaGenero = mainObj.getJSONArray("lista");
-
-            for (int i = 0; i <= listaGenero.length(); i++ )
-            {
-                JSONObject generoObjeto = (JSONObject) listaGenero.get(i);
-                genero.setId(generoObjeto.getInt("id"));
-                genero.setNome(generoObjeto.getString("nome"));
-
-                generos.add(genero);
-            }
+            JSONObject empresaObjeto = mainObj.getJSONObject("empresa");
+            empresa = gson.fromJson(empresaObjeto.toString(),empresa.getClass());
         }
         catch (JSONException e)
         {
             e.printStackTrace();
         }
         finally {
-            return generos;
+            return empresa;
         }
     }
 
-    public static Video JSONVideo(String jsonFile)
+    public static List<Empresa> JSONEmpresaLista(String jsonFile)
     {
+        JSONObject mainObj;
+        List<Empresa>empresas=null;
+        Empresa empresa = null;
+        Gson gson = new Gson();
+        try
+        {
+            mainObj = new JSONObject(jsonFile);
+            JSONArray listaEmpresaObjeto = mainObj.getJSONArray("lista");
 
-        JSONObject mainObj = null;
-        Video video = null;
-        List<Genero>generos;
-        try{
-            JSONObject videoObj = mainObj.getJSONObject("video");
-            JSONArray generoOBJ = videoObj.getJSONArray("generos");
-            for(int i = 0; i<= generoOBJ.length();i++)
+            for (int i=0; i<=listaEmpresaObjeto.length();i++ )
             {
-                
+                JSONObject empresaObjeto = (JSONObject) listaEmpresaObjeto.get(i);
+                empresa = gson.fromJson(empresaObjeto.toString(),empresa.getClass());
+                empresas.add(empresa);
             }
-            video.setId(videoObj.getInt("id"));
-            video.getProfissional().setId(videoObj.getJSONObject("profissional").getInt("id"));
-            video.getEmpresa().setId(videoObj.getJSONObject("empresa").getInt("id"));
-            video.setAvaliacao(mainObj.getInt("avaliacao"));
-            video.setLink(mainObj.getString("descricao"));
-
 
         }
         catch (JSONException e)
         {
-        e.printStackTrace();
+            e.printStackTrace();
         }
         finally {
-            return video;
+
+            return empresas;
         }
     }
 
